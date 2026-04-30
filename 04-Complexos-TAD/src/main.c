@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "numerosComplexo.h"
+#include "numerosComplexos.h"
 
 int main() {
     NumerosComplexos *p = NULL, *q= NULL;
