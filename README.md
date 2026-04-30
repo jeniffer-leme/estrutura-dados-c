@@ -69,7 +69,7 @@ Cada subpasta contém seu próprio código-fonte. Para compilar e rodar, siga os
 
 **1. Clone o repositório:**
 ```bash
-git clone https://github.com/jeniffer-leme/estrutura-dados-c.git
+git clone https://github.com/jeniffer-leme/estrutura-dados-c
 ```
 
 **2. Acesse a pasta do projeto desejado:**
