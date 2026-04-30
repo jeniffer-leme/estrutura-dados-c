@@ -34,13 +34,13 @@ O repositório é organizado por níveis de complexidade, seguindo uma trilha de
 ---
 
 ## 🧩 Funcionalidades Destacadas (TAD Complexos)
-- **Criação Dinâmica:** Alocação de memória em tempo de execução para os números complexos[cite: 1].
+- **Criação Dinâmica:** Alocação de memória em tempo de execução para os números complexos.
 - **Operações Aritméticas:**
   - Soma e Subtração de partes reais e imaginárias.
   - Multiplicação via distributiva considerando $i^2 = -1$.
   - Divisão complexa utilizando a técnica do conjugado.
 - **Menu Interativo:** Fluxo de usuário com proteção contra operações em dados não inicializados.
-- **Limpeza de Memória:** Função dedicada para desalocar todos os ponteiros ao encerrar o programa[cite: 1].
+- **Limpeza de Memória:** Função dedicada para desalocar todos os ponteiros ao encerrar o programa.
 
 ---
 
