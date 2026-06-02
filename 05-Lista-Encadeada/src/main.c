@@ -93,6 +93,8 @@
 
         }while (opcao != 0);
 
+        liberarLista(l1);
+        liberarLista(l2);
 
         return 0;
     }
