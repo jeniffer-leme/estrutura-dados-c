@@ -96,6 +96,103 @@ int removerElemento(Lista*inicio, int valor) {
     return 1;
 }
 
+Lista* intersecao(Lista* l1, Lista* l2) {
+    if(l1 == NULL || l2 == NULL) {
+        return NULL;
+    }
+
+    Lista* l3 = criarLista();
+
+    if((*l1 == NULL || *l2 == NULL)) {
+        return l3;
+    }
+
+    noLista *atual1 = *l1, *atual2 = *l2;
+
+    while(atual1 != NULL && atual2 != NULL) {
+
+        if(atual1->dado.num == atual2->dado.num) {
+            inserirOrdenada(l3, atual1->dado);
+
+            atual1 = atual1->prox;
+            atual2 = atual2->prox;
+        } else 
+        if(atual1->dado.num < atual2->dado.num) {
+            atual1 = atual1->prox;
+        } else {
+            atual2 = atual2->prox;
+        }
+    }
+
+    return l3;
+}
+
+Lista* diferenca(Lista* l1, Lista* l2) {
+    if(l1 == NULL || l2 == NULL) {
+        return NULL;
+    }
+
+    Lista* l4 = criarLista();
+
+    if(*l1 == NULL || *l2 == NULL) {
+        return l4;
+    }
+    
+    noLista* atual1 = *l1, *atual2 = *l2; 
+
+    while(atual1 != NULL && atual2 != NULL) {
+        if(atual1->dado.num == atual2->dado.num) {
+            atual1 = atual1->prox;
+            atual2 = atual2->prox;
+        } else 
+        if(atual1->dado.num < atual2->dado.num) {
+            inserirOrdenada(l4, atual1->dado);
+            atual1 = atual1->prox;
+        } else {
+            atual2 = atual2->prox;
+        }
+    }
+
+    while (atual1 != NULL) {
+        inserirOrdenada(l4, atual1->dado);
+        atual1 = atual1->prox;
+    }
+
+    return l4;
+}
+
+Lista* merge(Lista* l1, Lista* l2) {
+    if(l1 == NULL || l2 == NULL) {
+        return NULL;
+    }
+
+    Lista* l5 = criarLista();
+
+    if(*l1 == NULL || *l2 == NULL) {
+        return l5;
+    }
+
+    noLista* atual1 = *l1, *atual2 = *l2;
+
+    while(atual1 != NULL && atual2 != NULL) {
+        if(atual1->dado.num == atual2->dado.num) {
+            inserirOrdenada(l5, atual1->dado);
+            atual1 = atual1->prox;
+            atual2 = atual2->prox;
+        } else
+
+        if(atual1->dado.num < atual2->dado.num) {
+            inserirOrdenada(l5, atual1->dado);
+            atual1 = atual1->prox;
+        } else {
+            inserirOrdenada(l5, atual2->dado);
+            atual2 = atual2->prox;
+        }
+    }
+
+    return l5;
+}
+
 void imprimirLista(Lista* inicio) {
     if(inicio == NULL) {
         return;
@@ -109,4 +206,20 @@ void imprimirLista(Lista* inicio) {
 
         no = no->prox;
     }
+}
+
+void liberarLista(Lista* inicio) {
+    if(inicio == NULL) {
+        return;
+    }
+
+    noLista* atual = *inicio, *proximo;
+
+    while(atual != NULL) {
+        proximo = atual->prox;
+        free(atual);
+        atual = proximo;
+    }
+
+    *inicio = NULL;
 }
