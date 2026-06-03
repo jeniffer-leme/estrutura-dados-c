@@ -10,11 +10,11 @@ int inserirOrdenada(Lista* inicio, struct elemento valor);
 
 int removerElemento(Lista* inicio, int valor);
 
-int intersecao(Lista* inicio, struct elemento valor);
+Lista* intersecao(Lista* l1, Lista* l2);
 
-int diferenca(Lista* inicio, struct elemento valor);
+Lista* diferenca(Lista* l1, Lista* l2);
 
-int merge(Lista* inicio, struct elemento valor);
+Lista* merge(Lista* l1, Lista* l2);
 
 void imprimirLista(Lista* inicio);
 
