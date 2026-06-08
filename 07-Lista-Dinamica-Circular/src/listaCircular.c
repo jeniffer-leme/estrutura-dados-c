@@ -9,7 +9,7 @@ struct tipoNo {
 
 typedef struct tipoNo noLista;
 
-Lista* criarLista(Lista* inicio) {
+Lista* criarLista() {
     Lista* list = (Lista*) calloc(1, sizeof(noLista));
 
     if(list != NULL) {
@@ -61,11 +61,11 @@ int insereFinal(Lista* inicio, struct elemento aluno) {
 
     noLista* no = (noLista*) calloc(1, sizeof(noLista));
 
-    noLista *atual;
-
     if(no == NULL) {
         return 0;
     }
+
+    noLista *atual;
 
     no->dado = aluno;
     atual = *inicio;
@@ -107,7 +107,6 @@ int insereOrdenado(Lista* inicio, struct elemento aluno) {
         return 1;
     }  
 
-
     if((*inicio)->dado.matricula > aluno.matricula) {
         noLista* aux = *inicio;
 
@@ -131,31 +130,106 @@ int insereOrdenado(Lista* inicio, struct elemento aluno) {
 
     no->prox = atual;   
     anterior->prox = no;
-    
 
     return 1;
 }
 
-//TERMINAR
 int removeMatricula(Lista* inicio, int matricula) {
     if(inicio == NULL || *inicio == NULL) {
         return 0;
     }
 
+    if((*inicio)->dado.matricula == matricula) {
+
+        if((*inicio)->prox == *inicio) {
+            free(*inicio);
+            *inicio = NULL;
+
+            return 1;
+
+        } else {
+        noLista* aux = *inicio;
+        noLista* atual = *inicio;
+
+        while(aux->prox != *inicio) {
+            aux = aux->prox;
+        }
+
+        aux->prox = (*inicio)->prox;
+        *inicio = (*inicio)->prox;
+        free(atual);
+
+        return 1;
+        }
+    }
+
     noLista* anterior = *inicio, *atual = (*inicio)->prox;
 
-    while(atual != NULL && atual->dado.matricula < matricula) {
+    while(atual != *inicio && atual->dado.matricula != matricula) {
         anterior = atual;
         atual = atual->prox;
     }
 
-    if(atual == NULL) {
+    if(atual == *inicio ) {
         return 0;
     }
 
-    
+    anterior->prox = atual->prox;
+    free(atual);
 
+    return 1;
+}
 
+int removeInicio(Lista* inicio) {
+    if(inicio == NULL || *inicio == NULL) {
+        return 0;
+    }
+
+    if((*inicio)->prox == (*inicio)) {
+        free(*inicio);
+        *inicio = NULL;
+
+        return 1;
+    }
+
+    noLista* atual = *inicio;
+
+    while (atual->prox != *inicio) {
+        atual = atual->prox;
+    }
+
+    noLista* aux = *inicio;
+
+    atual->prox = (*inicio)->prox;
+    *inicio = (*inicio)->prox;
+
+    free(aux);    
+    return 1;
+}
+
+int removeFinal(Lista* inicio) {
+    if(inicio == NULL || *inicio == NULL) {
+        return 0;
+    }
+
+    if((*inicio)->prox == *inicio) {
+        free(*inicio);
+        *inicio = NULL;
+
+        return 1;
+    }
+
+    noLista* anterior = *inicio, *atual = (*inicio)->prox;
+
+    while (atual->prox != *inicio) {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    anterior->prox = *inicio;
+
+    free(atual);
+    return 1;
 }
 
 int tamanhoLista(Lista* inicio) {
@@ -171,7 +245,7 @@ int tamanhoLista(Lista* inicio) {
         atual = atual->prox;
     }while(atual != *inicio);
 
-    return 1;
+    return cont;
 }
 
 int listaVazia(Lista* inicio) {
@@ -186,15 +260,46 @@ int listaVazia(Lista* inicio) {
     return 0;
 }
 
-void apagaLista(Lista* inicio) {
-    if(inicio != NULL) {
-        noLista* atual;
-
-        while(*inicio != NULL) {
-            atual = *inicio;
-            atual = atual->prox;
-            free(atual);
-        }
-        free(inicio);
+void imprimeLista(Lista* inicio) {
+    if(inicio == NULL || *inicio == NULL) {
+        return;
     }
+
+    noLista* atual = *inicio;
+
+    do {
+        printf("Matrícula: %d\n", atual->dado.matricula);
+        printf("Nome: %s\n", atual->dado.nome);
+        printf("Nota 1: %.2f\n", atual->dado.nota1);
+        printf("Nota 2: %.2f\n", atual->dado.nota2);
+
+        printf("------------------------------------------\n");
+
+        atual = atual->prox;
+    }while(atual != *inicio);
+}
+
+void apagaLista(Lista* inicio) {
+    if(inicio != NULL && *inicio != NULL) {
+
+        noLista* atual = *inicio, *aux;
+
+        while(atual->prox != *inicio) {
+            atual = atual->prox;
+        }
+
+        atual->prox = NULL; 
+        
+        atual = *inicio;
+        
+        while(atual != NULL) {
+            aux = atual->prox; 
+            free(atual);       
+            atual = aux;       
+        }
+
+        *inicio = NULL; 
+    }
+
+    free(inicio); 
 }
