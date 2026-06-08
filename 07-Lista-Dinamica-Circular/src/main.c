@@ -121,7 +121,7 @@ int main() {
         if(removeFinal(inicio)) {
             printf("Final removido com sucesso!\n");
         } else {
-            printf("Erro ao remover o início da lista\n");
+            printf("Erro ao remover o final da lista\n");
         }
         break;
 
