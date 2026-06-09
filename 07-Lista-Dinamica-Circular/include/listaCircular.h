@@ -1,6 +1,6 @@
 struct elemento {
     int matricula;
-    char nome;
+    char nome[40];
     float nota1, nota2;
 };
 
