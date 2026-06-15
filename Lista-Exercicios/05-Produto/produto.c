@@ -38,10 +38,26 @@ int cadastrarProduto(Lista* lista, struct elemento produto) {
 
     no->dado = produto;
 
-    no->prox = lista->inicio;
-    lista->inicio = no;
-    lista->qtd++;
+    noLista* atual = lista->inicio, *ant = NULL;
 
+    while(atual != NULL && atual->dado.codigo > produto.codigo) {
+        ant = atual;
+        atual = atual->prox;
+    }
+
+    if(atual == NULL) {
+        return 0;
+    }
+
+    if(atual == lista->inicio) {
+        no->prox = lista->inicio;
+        lista->inicio = no;
+    } else {
+        ant->prox = no;
+        no->prox = atual;
+    }
+
+    lista->qtd++;
     return 1;
 }
 
@@ -103,18 +119,38 @@ int atualizarCadastro(Lista* lista, int codigo, struct elemento produto) {
     return 1;
 }
 
-int buscarMenorPreco(Lista* lista, struct elemento produto) {
-    if(lista == NULL || lista->inicio == NULL) {
+int buscarMenorPreco(Lista* lista, struct elemento* produto) {
+    if(lista == NULL || lista->inicio) {
         return 0;
     }
 
-    noLista* atual = lista->inicio;
+    noLista*atual = lista->inicio;
+    noLista* menor = lista->inicio;
 
-    atual->dado = produto;
-
-    while(atual != NULL && atual->dado.preco > produto.preco) {
+    while(atual != NULL) {
+        if(atual->dado.preco > menor->dado.preco) {
+            menor = atual;
+        }
         atual = atual->prox;
     }
 
-    
+    *produto = menor->dado;
+
+    return 1;
+}
+
+void buscarEstoqueInferior(Lista* lista, struct elemento* produto, float valor) {
+    if(lista == NULL || lista->inicio == NULL) {
+        return;
+    }
+
+    noLista* atual = lista->inicio;
+    int achou = 0;
+
+    while(atual != NULL) {
+        if(atual->dado.quantidade < valor) {
+            menor = atual;
+        }
+        atual = atual->prox;
+    }
 }
