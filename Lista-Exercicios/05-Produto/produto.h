@@ -16,8 +16,8 @@ int apagarProduto(Lista* lista, int codigo);
 int atualizarCadastro(Lista* lista, int codigo, struct elemento produto);
 
 
-int buscarMenorPreco(Lista* lista);
-int buscarEstoqueInferior(Lista* lista);
+int buscarMenorPreco(Lista* lista, struct elemento* produto);
+int buscarEstoqueInferior(Lista* lista, struct elemento* produto, float valor);
 
 int gerarRelatorioCres(Lista* lista);
 int gerarRelatorioDesc(Lista* lista);
