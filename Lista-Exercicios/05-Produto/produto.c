@@ -78,15 +78,42 @@ int atualizarCadastro(Lista* lista, int codigo, struct elemento produto) {
         return 0;
     }
 
-    noLista* atual = lista->inicio, *ant = NULL;
+    noLista* atual = lista->inicio;
 
     while(atual != NULL && atual->dado.codigo != codigo) {
-        ant = atual;
         atual = atual->prox;
     }
 
     if(atual == NULL) {
         return 0;
+    }
+
+    printf("Nome: ");
+    scanf("%s", &atual->dado.nome);
+
+    printf("Preço: ");
+    scanf("%f", &atual->dado.preco);
+
+    printf("Quantidade: ");
+    scanf("%d", &atual->dado.quantidade);
+
+    printf("Data: ");
+    scanf("%d", &atual->dado.data);
+
+    return 1;
+}
+
+int buscarMenorPreco(Lista* lista, struct elemento produto) {
+    if(lista == NULL || lista->inicio == NULL) {
+        return 0;
+    }
+
+    noLista* atual = lista->inicio;
+
+    atual->dado = produto;
+
+    while(atual != NULL && atual->dado.preco > produto.preco) {
+        atual = atual->prox;
     }
 
     
