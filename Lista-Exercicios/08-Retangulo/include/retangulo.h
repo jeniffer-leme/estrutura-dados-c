@@ -12,5 +12,5 @@ void apagarLista(Lista* lista);
 int inserir(Lista* lista, struct elemento retangulo);
 int remover(Lista* lista, int id);
 
-float calcularArea(Lista* lista, struct elemento retangulo, int id);
+float calcularArea(Lista* lista, struct elemento* retangulo);
 void imprimir(Lista* lista);
