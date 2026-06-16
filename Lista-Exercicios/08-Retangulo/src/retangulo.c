@@ -73,20 +73,23 @@ int remover(Lista* lista, int id) {
     return 1;
 }
 
-float calcularArea(Lista* lista, struct elemento retangulo, int id) {
+float calcularArea(Lista* lista, struct elemento* retangulo) {
     if(lista == NULL || lista->inicio == NULL) {
         return 0;
     }
 
     noLista* atual = lista->inicio;
 
-    while(atual != NULL && atual->dado.id != id) {
+    while(atual != NULL && atual->dado.id != retangulo->id) {
         atual = atual->prox;
     }
 
     if(atual == NULL) {
         return 0;
     }
+
+    retangulo->base = atual->dado.base;
+    retangulo->altura = atual->dado.altura;
 
     return atual->dado.altura * atual->dado.base;
 }
@@ -98,7 +101,7 @@ void imprimir(Lista* lista) {
 
     noLista* atual = lista->inicio;
 
-    while(lista->inicio != NULL) {
+    while(atual != NULL) {
         printf("ID: %d\n", atual->dado.id);
         printf("Altura(h): %.2f\n", atual->dado.altura);
         printf("Base(b): %.2f\n", atual->dado.base);
