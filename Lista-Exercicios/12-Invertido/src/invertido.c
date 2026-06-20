@@ -42,3 +42,35 @@ int empilhar(Pilha* pilha, struct elemento valor) {
     pilha->qtd++;
     return 1;
 }
+
+int pilhaVazia(Pilha* pilha) {
+    if(pilha == NULL || pilha->topo == NULL) {
+        return 1;
+    }
+    return 0;
+}
+
+int desempilhar(Pilha* pilha, struct elemento* valor) {
+    if(pilha == NULL || pilhaVazia(pilha)) {
+        return 0;
+    }
+
+    noPilha* no = pilha->topo;
+    *valor = no->dado;
+    
+    pilha->topo = no->prox;
+    free(no);
+    
+    pilha->qtd--;
+    return 1;
+}
+
+void liberarPilha(Pilha* pilha) {
+    if(pilha != NULL) {
+        struct elemento lixo;
+        while(!pilhaVazia(pilha)) {
+            desempilhar(pilha, &lixo);
+        }
+        free(pilha);
+    }
+}
