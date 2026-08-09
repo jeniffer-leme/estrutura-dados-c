@@ -21,7 +21,12 @@ O repositório é organizado por níveis de complexidade, seguindo uma trilha de
 | `02-Alocacao-Dinamica` | Exercícios de reserva e liberação de memória em tempo de execução. | Uso de `malloc`/`calloc` e gerenciamento de memória no sistema. |
 | `03-Racionais-TAD` | Projeto de manipulação de frações e simplificação. | Estruturas básicas (TAD) e aritmética. |
 | `04-Complexos-TAD` | Calculadora de números complexos com menu interativo. | Ponteiros aplicados a structs, `math.h` e distributiva. |
-| `05-Listas-Encadeadas` | (Em breve) Implementação de nós dinâmicos e cadeias de dados. | Encadeamento e ponteiros de ponteiros. |
+| `05-Lista-Encadeada` | Implementação de nó simples encadeado. | Encadeamento simples, ponteiros para ponteiros e inserção/remoção. |
+| `06-Lista Duplamente Encadeada` | Lista com navegação bidirecional. | Ponteiros `prox` e `ant`, travessia nos dois sentidos. |
+| `07-Lista-Dinamica-Circular` | Lista encadeada com o último nó apontando para o primeiro. | Estruturas circulares, navegação contínua. |
+| `08-Fila` | Estrutura de dados do tipo FIFO (*First In, First Out*). | Enfileiramento (enqueue), desenfileiramento (dequeue). |
+| `09-Pilha` | Estrutura de dados do tipo LIFO (*Last In, First Out*). | Empilhamento (push), desempilhamento (pop) e topo. |
+| `Lista-Exercicios` | Coleção de exercícios práticos aplicando as estruturas desenvolvidas. | Consolidação de conceitos e resolução de problemas. |
 
 ---
 
